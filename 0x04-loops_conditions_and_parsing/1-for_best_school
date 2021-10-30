@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# displays Best School 10 times
+for (( w=1; w<=10; w++ ))
+do
+	echo "Best School"
+done
