@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # displays Hi at 9th iteration while displaying Best School
 count=0
-while [ $count = 11 ]
+while [ $count -lt 11 ]
 do
 	if [ $count = 9 ]
 	then
