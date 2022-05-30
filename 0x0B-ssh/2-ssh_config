@@ -1,3 +1,0 @@
-IdentifyFile ~/.ssh/school
-PasswordAuthentication no
-PubkeyAuthentication yes
