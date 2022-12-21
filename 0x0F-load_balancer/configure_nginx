@@ -6,7 +6,7 @@
 #set -x
 
 # colors
-blue='\e[1;34m'
+#blue='\e[1;34m'
 brown='\e[0;33m'
 green='\e[1;32m'
 reset='\033[0m'
