@@ -1,30 +1,20 @@
 #!/usr/bin/python3
-"""Module to fetch a todo list API"""
-import json
-import sys
-import urllib.request
+"""Gather data using the REST API"""
+import requests
+from sys import argv
 
-
-def get_todo_list(employee_id):
-    """
-    Function to get the todo list for a given employee ID
-    :param employee_id: The ID of the employee
-    """
-    url = f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}"
-    response = urllib.request.urlopen(url)
-    data = json.loads(response.read())
-    employee_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
-    employee_response = urllib.request.urlopen(employee_url)
-    employee_data = json.loads(employee_response.read())
-    employee_name = employee_data.get("name")
-    completed_tasks = [task for task in data if task["completed"]]
-    print(f"Employee {employee_name} is done with tasks({len(completed_tasks)}/{len(data)}):")
-    for task in completed_tasks:
-        print(f"\t {task['title']}")
-
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Please provide an employee ID as a parameter")
-    else:
-        employee_id = int(sys.argv[1])
-        get_todo_list(employee_id)
+if __name__ == '__main__':
+    complete = 0
+    complete_list = []
+    url = 'https://jsonplaceholder.typicode.com/users/{}'.format(argv[1])
+    r = requests.get(url).json()
+    url = 'https://jsonplaceholder.typicode.com/users/{}/todos'.format(argv[1])
+    todos = requests.get(url).json()
+    for task in todos:
+        if task.get('completed'):
+            complete += 1
+            complete_list.append(task.get('title'))
+    print('Employee {} is done with tasks({}/{}):'
+          .format(r.get('name'), complete, len(todos)))
+    for task in complete_list:
+        print('\t {}'.format(task))
