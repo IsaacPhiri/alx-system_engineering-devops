@@ -1,11 +1,11 @@
-#!/bin/bash
-# Script that creates a backup
+#!/usr/bin/env bash
+# backup and compress my databases
 
-# Get current date in the format of day-month-year
-date=$(date +%d-%m-%Y)
+# variables
+day=$(date +"%d")
+month=$(date +"%m")
+year=$(date +"%Y")
+file_name="$day-$month-$year.tar.gz"
 
-# Dump all MySQL databases and save to backup.sql
-mysqldump -u root -p$1 --all-databases > backup.sql
-
-# Compress backup.sql to a tar.gz archive with the name format day-month-year.tar.gz
-tar -czf "${date}.tar.gz" backup.sql
+mysqldump --all-databases -u root --password="$1" > backup.sql
+tar -czvf "$file_name" backup.sql
