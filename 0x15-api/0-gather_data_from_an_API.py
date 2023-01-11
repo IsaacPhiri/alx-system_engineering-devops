@@ -1,7 +1,9 @@
 #!/usr/bin/python3
+"""Module to fetch a todo list API"""
 import json
 import sys
 import urllib.request
+
 
 def get_todo_list(employee_id):
     """
