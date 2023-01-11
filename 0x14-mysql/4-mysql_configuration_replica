@@ -1,0 +1,9 @@
+!includedir /etc/mysql/conf.d/
+!includedir /etc/mysql/mysql.conf.d/
+
+[mysqld]
+server-id=2
+log_bin=mysql-bin
+bind-address=0.0.0.0
+relay-log=mysql-relay-bin
+read-only=1
